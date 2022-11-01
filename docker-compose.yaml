@@ -1,0 +1,14 @@
+version: '3'
+services:
+  dockerhttpsapi: 
+    build: .
+    ports:
+    - "49900:80"
+    - "49901:443"
+    environment: 
+      ASPNETCORE_URLS: "https://+;http://+"
+      ASPNETCORE_HTTPS_PORT: "49901"
+      ASPNETCORE_ENVIRONMENT: "Development"
+    volumes:
+      - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
+      - ${USERPROFILE}\.aspnet\https:/root/.aspnet/https/
