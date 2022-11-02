@@ -23,7 +23,13 @@ dotnet user-secrets set "Kestrel:Certificates:Development:Password" "pa55w0rd!" 
 docker run --rm -it -p 49900:80 -p 49901:443 -e ASPNETCORE_URLS="https://+;http://+" -e ASPNETCORE_HTTPS_PORT=49901 -e ASPNETCORE_ENVIRONMENT=Development -v $env:APPDATA\microsoft\UserSecrets\:/root/.microsoft/usersecrets -v $env:USERPROFILE\.aspnet\https:/root/.aspnet/https/ dockerhttpsapi -- works fine  --- register port 49901:443 for https 
 
 docker-compose up --build     --- creates separate image according to yaml-file for app and runs a container 
-docker-compose up              --- runs a container  
+docker-compose up              --- runs a container 
+
+docker ps -a            -- show all containers/apps
+docker container ls  --> show all local containers
+docker commit 9c01590f782c petrenkodocker/dockerhttpsapi     -- create the image "petrenkodocker/dockerhttpsapi"  from the containner "9c01590f782c"
+
+docker push petrenkodocker/dockerhttpsapi:latest       -- push the image petrenkodocker/dockerhttpsapi:latest  to remote repository -- to push: image must have prefix/segment "petrenkodocker/" 
 ====================================================
 DockerHttpsAPI  ( dockerhttpsapi )
 
